@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CitChat_newVersion</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="login_to_continue">Login to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="still_don_t_have_account_click_me">Still don\'t have account? Click me</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="register_page">Register Page</string>
+    <string name="add_your_image">Add your image</string>
+    <string name="your_username">Your username</string>
+    <string name="input_password_again">Input password again</string>
+    <string name="register">Register</string>
+    <string name="click_this_to_login">Click this to login page</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="select_user">Select User</string>
+
+</resources>
