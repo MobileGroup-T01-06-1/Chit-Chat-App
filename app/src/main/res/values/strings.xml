@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">CitChat_newVersion</string>
-    <string name="welcome_back">Welcome Back!</string>
     <string name="login_to_continue">Login to continue</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -13,7 +12,8 @@
     <string name="input_password_again">Input password again</string>
     <string name="register">Register</string>
     <string name="click_this_to_login">Click this to login page</string>
-    <string name="type_a_message">Type a message</string>
+    <string name="show_password">show password</string>
     <string name="select_user">Select User</string>
+    <string name="input_a_message">Input a message</string>
 
 </resources>
