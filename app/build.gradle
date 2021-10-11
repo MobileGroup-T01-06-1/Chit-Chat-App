@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 30
 
     defaultConfig {
         applicationId "com.example.chitchat_newversion"
         minSdk 21
-        targetSdk 31
+        targetSdk 30
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -31,14 +31,15 @@ android {
     buildFeatures(){
         viewBinding true
     }
-    compileSdkVersion 31
-    buildToolsVersion '31.0.0'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {
 
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
+
 
     // Add the dependency for the Firebase SDK for Google Analytics
     // When using the BoM, don't specify versions in Firebase dependencies
@@ -71,6 +72,15 @@ dependencies {
 
     // MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    // firebase authentication
+    // Declare the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+
+    implementation 'com.google.firebase:firebase-database:20.0.2'
+    implementation 'com.google.firebase:firebase-auth'
+    // Also declare the dependency for the Google Play services library and specify its version
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
 
 
 }

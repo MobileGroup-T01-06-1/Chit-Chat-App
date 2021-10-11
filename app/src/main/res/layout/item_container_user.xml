@@ -6,7 +6,7 @@
     android:padding="@dimen/_8sdp">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imageProfile"
+        android:id="@+id/userImage"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         android:background="@drawable/background_image"
@@ -19,9 +19,9 @@
         android:id="@+id/viewSupporter"
         android:layout_width="1dp"
         android:layout_height="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
-        app:layout_constraintStart_toEndOf="@id/imageProfile"
-        app:layout_constraintTop_toTopOf="@id/imageProfile"/>
+        app:layout_constraintBottom_toBottomOf="@+id/userImage"
+        app:layout_constraintStart_toEndOf="@id/userImage"
+        app:layout_constraintTop_toTopOf="@id/userImage"/>
 
     <TextView
         android:id="@+id/textName"
@@ -35,7 +35,7 @@
         android:textSize="@dimen/_13ssp"
         app:layout_constraintBottom_toTopOf="@id/viewSupporter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageProfile"/>
+        app:layout_constraintStart_toEndOf="@id/userImage"/>
 
     <TextView
         android:id="@+id/textEmail"
@@ -48,6 +48,9 @@
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageProfile"
+        app:layout_constraintStart_toEndOf="@id/userImage"
         app:layout_constraintTop_toBottomOf="@id/viewSupporter"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

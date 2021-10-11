@@ -10,17 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chitchat_newversion.databinding.ItemContainerUserBinding;
-import com.example.chitchat_newversion.models.User;
+import com.example.chitchat_newversion.listeners.UserListener;
+import com.example.chitchat_newversion.models.Users;
 
 import java.util.List;
 
+public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder>{
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder>{
+    private final List<Users> users;
+    private final UserListener userListener;
 
-    private final List<User> users;
-
-    public UserAdapter(List<User> users) {
+    public UsersAdapter(List<Users> users, UserListener userListener)
+    {
         this.users = users;
+        this.userListener = userListener;
     }
 
     @NonNull
@@ -54,16 +57,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             binding = itemContainerUserBinding;
         }
 
-        void setUserData(User user){
+        void setUserData(Users user){
             binding.textName.setText(user.name);
             binding.textEmail.setText(user.email);
-            binding.imageProfile.setImageBitmap(getUserImage(user.image));
+            binding.userImage.setImageBitmap(getUserImage(user.image));
+            binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
         }
     }
 
     private Bitmap getUserImage(String encodedImage){
         byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-
     }
+
 }
