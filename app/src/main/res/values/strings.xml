@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">CitChat_newVersion</string>
-    <string name="login_to_continue">Login to continue</string>
+    <string name="app_name">ChitChat_newVersion</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -15,5 +14,7 @@
     <string name="show_password">show password</string>
     <string name="select_user">Select User</string>
     <string name="input_a_message">Input a message</string>
+    <string name="login_page">Login Page</string>
+    <string name="welcome_to_chit_chat_app">Welcome to Chit Chat App!</string>
 
 </resources>

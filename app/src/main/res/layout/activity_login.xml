@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_40sdp"
-            android:text="Welcome to Chit Chat App!"
+            android:text="@string/welcome_to_chit_chat_app"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"/>
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
-            android:text="@string/login_to_continue"
+            android:text="@string/login_page"
             android:textColor="@color/secondary_text"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold"/>

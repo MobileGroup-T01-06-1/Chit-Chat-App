@@ -27,10 +27,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     // enable view binding, generates a binding class for each XML layout file
     buildFeatures(){
         viewBinding true
     }
+
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
 }

@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        // https://developer.android.google.cn/topic/libraries/view-binding?hl=zh-cn
+        // similar with findViewbyid
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListeners();
@@ -82,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0)
                     {
+                        // documentSnapshot contains data read from the document in firestore database
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                         preferenceManger.putBoolean(Constants.KEY_IS_LOGINED, true);
                         preferenceManger.putString(Constants.KEY_USER_ID, documentSnapshot.getId());

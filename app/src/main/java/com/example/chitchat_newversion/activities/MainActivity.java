@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         binding.fabNewChat.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
     }
 
+
+    // show users' profile on the main page
     private void loadUserDetails()
     {
         binding.textName.setText(preferenceManger.getString(Constants.KEY_NAME));
