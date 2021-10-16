@@ -3,6 +3,7 @@ package com.example.chitchat_newversion.utilities;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+// https://www.cnblogs.com/penger/p/4143331.html
 public class PreferenceManger {
 
     private final SharedPreferences sharedPreferences;

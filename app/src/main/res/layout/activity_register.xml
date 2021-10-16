@@ -47,6 +47,7 @@
                 android:text="@string/add_your_image"
                 android:textColor="@color/secondary_text"
                 android:textSize="@dimen/_10ssp"/>
+
         </FrameLayout>
 
 

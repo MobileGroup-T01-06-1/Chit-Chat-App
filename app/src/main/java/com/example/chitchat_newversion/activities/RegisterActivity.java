@@ -59,6 +59,8 @@ public class RegisterActivity extends AppCompatActivity {
                 register();
             }
         });
+
+        // once click image, then open mediastore in android
         binding.layoutImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -101,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     loading(false);
                     preferenceManger.putBoolean(Constants.KEY_IS_LOGINED, true);
+                    // documentReference -> document location in firestore database
                     preferenceManger.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManger.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
                     preferenceManger.putString(Constants.KEY_IMAGE, encodedImage);
@@ -116,16 +119,26 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // read the image from phone
+    // first read image into buffer stream as byte array
+    // then compress the picture as jpeg format
+    // then convert byte array to string format
     private String encodedImage(Bitmap bitmap)
     {
         int width = 150;
+
+        // get height of images
         int height = bitmap.getHeight() * width / bitmap.getWidth();
+
+        // create a new scales picture according to the original large picture
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, width, height,false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        // https://www.jianshu.com/p/7096fd250c0d
         previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
+
 
     private final ActivityResultLauncher<Intent> selectImage = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),

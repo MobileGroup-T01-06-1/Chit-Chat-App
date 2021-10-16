@@ -15,6 +15,8 @@ import com.example.chitchat_newversion.models.Users;
 
 import java.util.List;
 
+
+// recycleView list of user list
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder>{
 
     private final List<Users> users;
@@ -44,7 +46,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return users.size();
     }
 

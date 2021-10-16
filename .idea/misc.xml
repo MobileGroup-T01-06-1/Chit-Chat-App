@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/background_chat_input.xml" value="0.1" />
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/background_content_bottom.xml" value="0.1" />
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/background_content_top.xml" value="0.20625" />
@@ -11,15 +12,16 @@
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/background_input.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/background_received_message.xml" value="0.1" />
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/background_sent_message.xml" value="0.1" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/ic_add.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/drawable/ic_logout.xml" value="0.1" />
-        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_chat.xml" value="0.264" />
-        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_register.xml" value="0.1" />
-        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_users.xml" value="0.1" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_chat.xml" value="0.2" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/activity_users.xml" value="0.264" />
         <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/item_container_received_message.xml" value="0.1" />
-        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/item_container_sent_message.xml" value="0.1" />
-        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/item_container_user.xml" value="0.1" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/item_container_sent_message.xml" value="0.264" />
+        <entry key="..\:/Users/TianQiYu/AndroidStudioProjects/ChitChat_newVersion/app/src/main/res/layout/item_container_user.xml" value="0.4" />
       </map>
     </option>
   </component>
