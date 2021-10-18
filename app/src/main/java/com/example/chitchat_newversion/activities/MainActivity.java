@@ -2,29 +2,44 @@ package com.example.chitchat_newversion.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.chitchat_newversion.R;
+import com.example.chitchat_newversion.adapters.RecentConversationsAadpter;
 import com.example.chitchat_newversion.databinding.ActivityMainBinding;
+import com.example.chitchat_newversion.listeners.ConversationListener;
+import com.example.chitchat_newversion.models.ChatMessage;
+import com.example.chitchat_newversion.models.Users;
 import com.example.chitchat_newversion.utilities.Constants;
 import com.example.chitchat_newversion.utilities.PreferenceManger;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ConversationListener {
 
     private ActivityMainBinding binding;
     private PreferenceManger preferenceManger;
+    private List<ChatMessage> conversations;
+    private RecentConversationsAadpter conversationsAadpter;
+    private FirebaseFirestore database;
 
 
     @Override
@@ -33,9 +48,19 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManger = new PreferenceManger(getApplicationContext());
+        init();
         loadUserDetails();
         getToken();
         setListeners();
+        listenConversations();
+    }
+
+    private void init()
+    {
+        conversations = new ArrayList<>();
+        conversationsAadpter = new RecentConversationsAadpter(conversations, this);
+        binding.conversationsRecyclerView.setAdapter(conversationsAadpter);
+        database = FirebaseFirestore.getInstance();
     }
 
     private void setListeners()
@@ -58,6 +83,74 @@ public class MainActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+    private void listenConversations()
+    {
+        database.collection(Constants.KEY_COLLECTION_CONVERSATION)
+                .whereEqualTo(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID))
+                .addSnapshotListener(eventListener);
+        database.collection(Constants.KEY_COLLECTION_CONVERSATION)
+                .whereEqualTo(Constants.KEY_RECEIVED_ID, preferenceManger.getString(Constants.KEY_USER_ID))
+                .addSnapshotListener(eventListener);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private final EventListener<QuerySnapshot> eventListener = (value, error) -> {
+        if(error != null)
+        {
+            return;
+        }
+        if(value != null)
+        {
+            for (DocumentChange documentChange : value.getDocumentChanges())
+            {
+                if(documentChange.getType() == DocumentChange.Type.ADDED)
+                {
+                    String senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                    String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVED_ID);
+                    ChatMessage chatMessage = new ChatMessage();
+                    chatMessage.senderId = senderId;
+                    chatMessage.receiverId = receiverId;
+                    if(preferenceManger.getString(Constants.KEY_USER_ID).equals(senderId))
+                    {
+                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_RECEIVER_IMAGE);
+                        chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_RECEIVER_NAME);
+                        chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_RECEIVED_ID);
+                    }
+                    else
+                    {
+                        chatMessage.conversionImage = documentChange.getDocument().getString(Constants.KEY_SENDER_IMAGE);
+                        chatMessage.conversionName = documentChange.getDocument().getString(Constants.KEY_SENDER_NAME);
+                        chatMessage.conversionId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                    }
+                    chatMessage.message = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+                    chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                    conversations.add(chatMessage);
+                }
+                else if(documentChange.getType() == DocumentChange.Type.MODIFIED)
+                {
+                    for(int i = 0; i < conversations.size(); i ++)
+                    {
+                        String senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                        String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVED_ID);
+                        if(conversations.get(i).senderId.equals(senderId) && conversations.get(i).receiverId.equals(receiverId))
+                        {
+                            conversations.get(i).message = documentChange.getDocument().getString(Constants.KEY_LAST_MESSAGE);
+                            conversations.get(i).dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            Collections.sort(conversations, (obj1, obj2) -> obj2.dateObject.compareTo(obj1.dateObject));
+            conversationsAadpter.notifyDataSetChanged();
+            binding.conversationsRecyclerView.smoothScrollToPosition(0);
+            binding.conversationsRecyclerView.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.GONE);
+
+        }
+    };
 
     private void getToken()
     {
@@ -87,5 +180,13 @@ public class MainActivity extends AppCompatActivity {
             preferenceManger.clear();
             startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         }).addOnFailureListener(e -> showToast("Unable to logout"));
+    }
+
+    @Override
+    public void onConversionClicked(Users users)
+    {
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER, users);
+        startActivity(intent);
     }
 }

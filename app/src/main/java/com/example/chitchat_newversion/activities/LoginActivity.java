@@ -9,6 +9,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.chitchat_newversion.R;
@@ -32,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferenceManger = new PreferenceManger(getApplicationContext());
-
         // sign in status
         if(preferenceManger.getBoolean(Constants.KEY_IS_LOGINED))
         {
