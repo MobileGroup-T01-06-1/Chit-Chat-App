@@ -98,6 +98,8 @@ public class RegisterActivity extends AppCompatActivity {
         user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
         user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
         user.put(Constants.KEY_IMAGE, encodedImage);
+        user.put(Constants.KEY_SQUESTION,binding.inputSafetyQuestion.getText().toString());
+        user.put(Constants.KEY_SANSWER,binding.inputSafetyAnswer.getText().toString());
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
@@ -107,6 +109,8 @@ public class RegisterActivity extends AppCompatActivity {
                     preferenceManger.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManger.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
                     preferenceManger.putString(Constants.KEY_IMAGE, encodedImage);
+                    preferenceManger.putString(Constants.KEY_SQUESTION,binding.inputSafetyQuestion.getText().toString());
+                    preferenceManger.putString(Constants.KEY_SANSWER,binding.inputSafetyAnswer.getText().toString());
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -212,6 +216,16 @@ public class RegisterActivity extends AppCompatActivity {
         else if(!binding.inputPassword.getText().toString().equals(binding.inputPasswordAgain.getText().toString()))
         {
             showToast("Passwords you entered twice should be the same");
+            return false;
+        }
+        else if(binding.inputSafetyQuestion.getText().toString().isEmpty())
+        {
+            showToast("Please input safety question");
+            return false;
+        }
+        else if(binding.inputSafetyAnswer.getText().toString().isEmpty())
+        {
+            showToast("Please input the answer of safety question");
             return false;
         }
         else

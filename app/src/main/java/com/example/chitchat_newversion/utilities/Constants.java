@@ -10,6 +10,8 @@ public class Constants {
         public static final String KEY_EMAIL = "email";
         public static final String KEY_IMAGE = "image";
         public static final String KEY_FCM_TOKEN = "fcmToken";
+        public static final String KEY_SQUESTION = "safetyQuestion";
+        public static final String KEY_SANSWER = "safetyAnswer";
 
 
         public static final String KEY_PREFERENCE_NAME = "preference";

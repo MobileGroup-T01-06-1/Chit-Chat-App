@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        binding.ForgetPassword.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class)));
     }
 
     private void login()

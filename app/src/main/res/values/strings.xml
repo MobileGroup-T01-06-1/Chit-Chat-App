@@ -4,7 +4,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="still_don_t_have_account_click_me">Still don\'t have account? Click me</string>
-    <string name="forget_password">Forget Password?</string>
+    <string name="forget_password">Forget Password</string>
     <string name="register_page">Register Page</string>
     <string name="add_your_image">Add your image</string>
     <string name="your_username">Your username</string>
@@ -16,5 +16,10 @@
     <string name="input_a_message">Input a message</string>
     <string name="login_page">Login Page</string>
     <string name="welcome_to_chit_chat_app">Welcome to Chit Chat App!</string>
+    <string name="input_a_safety_Question">Safety question</string>
+    <string name="input_a_safety_Answer">Safety question answer</string>
+    <string name="confirm_Button">Confirm</string>
+    <string name="return_button">Return</string>
+    <string name="new_password">New password</string>
 
 </resources>
