@@ -5,3 +5,6 @@ This is a software project, from UoM, mobile development
 
 2021/10/16 Bug, too much blank between sender and receiver message, has been fixed. Annotations have been added.
  
+2021/10/17 adding forget password function.
+
+2021/10/18 fixed bugs about forget password and select user.
