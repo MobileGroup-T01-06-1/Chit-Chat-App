@@ -14,3 +14,5 @@ This is a software project, from UoM, mobile development
 1. showing the last recent message in conversations
 2. updating recent conversations real-time
 3. User-list will update when new message has been arrived
+
+2021/10/20 adding a kit of floating buttons with extra functions and voice button on the chat bar

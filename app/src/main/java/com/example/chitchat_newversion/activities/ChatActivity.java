@@ -44,6 +44,9 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseFirestore database;
     private String conversionId = null;
 
+    // TODO: 2021/10/20  UI to check whether sub FABs are visible or not & drag
+    private Boolean isMainFabVisible, isSubFabVisible, isDrag;
+    private int lastX,lastY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class ChatActivity extends AppCompatActivity {
         loadReceiverDetails();
         init();
         listenMessages();
+        sideFab();
     }
 
     private Bitmap getBitmapFromEncodedString(String encodedImage)
@@ -223,4 +227,67 @@ public class ChatActivity extends AppCompatActivity {
           conversionId = documentSnapshot.getId();
       }
     };
+
+
+    private void sideFab() {
+        binding.moreFab.setVisibility(View.GONE);
+        binding.sideImage.setVisibility(View.GONE);
+        binding.sideFile.setVisibility(View.GONE);
+        binding.phoneCall.setVisibility(View.GONE);
+        binding.videoCall.setVisibility(View.GONE);
+        binding.camera.setVisibility(View.GONE);
+        binding.sideLocation.setVisibility(View.GONE);
+        binding.sideMenu.shrink();
+        isMainFabVisible = false;
+        isSubFabVisible = false;
+
+
+        binding.sideMenu.setOnClickListener(view -> {
+            if (!isMainFabVisible) {
+                mainFabShow();
+            }
+            else if(isSubFabVisible){
+                subFabHide();
+                mainFabHide();
+            }
+            else {
+                mainFabHide();
+            }
+        });
+        binding.moreFab.setOnClickListener(view -> {
+            if (!isSubFabVisible){
+                subFabShow();
+            }else{
+                subFabHide();
+            }
+        });
+    }
+    private void mainFabShow(){
+        binding.sideMenu.extend();
+        binding.sideImage.show();
+        binding.sideFile.show();
+        binding.sideLocation.show();
+        binding.moreFab.show();
+        isMainFabVisible = true;
+    }
+    private void subFabShow(){
+        binding.camera.show();
+        binding.phoneCall.show();
+        binding.videoCall.show();
+        isSubFabVisible = true;
+    }
+    private void mainFabHide(){
+        binding.moreFab.hide();
+        binding.sideImage.hide();
+        binding.sideFile.hide();
+        binding.sideLocation.hide();
+        binding.sideMenu.shrink();
+        isMainFabVisible = false;
+    }
+    private void subFabHide(){
+        binding.camera.hide();
+        binding.phoneCall.hide();
+        binding.videoCall.hide();
+        isSubFabVisible = false;
+    }
 }
