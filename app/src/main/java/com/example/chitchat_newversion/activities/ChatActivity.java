@@ -1,13 +1,23 @@
 package com.example.chitchat_newversion.activities;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.chitchat_newversion.R;
 import com.example.chitchat_newversion.adapters.ChatAdapter;
@@ -47,6 +57,8 @@ public class ChatActivity extends AppCompatActivity {
     // TODO: 2021/10/20  UI to check whether sub FABs are visible or not & drag
     private Boolean isMainFabVisible, isSubFabVisible, isDrag;
     private int lastX,lastY;
+    //THis variable used in side-location
+    private static String provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,7 +183,61 @@ public class ChatActivity extends AppCompatActivity {
     {
         binding.imageBack.setOnClickListener(v -> onBackPressed());
         binding.layoutSend.setOnClickListener(v -> sendMessage());
+        //map listener
+        binding.sideLocation.setOnClickListener(v -> sendLocation());
     }
+
+    private void sendLocation() {
+        String serviceString = Context.LOCATION_SERVICE;
+        LocationManager locationManager = (LocationManager) getSystemService(serviceString);
+        List<String> list = locationManager.getProviders(true);
+        if (list.contains(locationManager.GPS_PROVIDER)){
+            provider = locationManager.GPS_PROVIDER;
+        }
+        else if (list.contains(locationManager.NETWORK_PROVIDER)){
+            provider = locationManager.NETWORK_PROVIDER;
+        }
+        if (provider != null){
+            if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                return;
+            }
+            locationManager.requestLocationUpdates(provider, 2000, 10,locationListener);
+
+            Location lastknownlocation = locationManager.getLastKnownLocation(provider);
+            String currentposition = "latitude is " + lastknownlocation.getLatitude()  + "longitude is " + lastknownlocation.getLongitude();
+            if (lastknownlocation != null) {
+                binding.inputMessage.setText(currentposition);
+                Toast.makeText(this, "success", Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(this, "Please Try again!", Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Toast.makeText(this,"No permission",Toast.LENGTH_LONG).show();
+            return;
+        }
+    }
+
+    //THis function used in send location function
+    private final LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            // TODO Auto-generated method stub
+        }
+        @Override
+        public void onProviderDisabled(String arg0) {
+            // TODO Auto-generated method stub
+        }
+        @Override
+        public void onProviderEnabled(String arg0) {
+            // TODO Auto-generated method stub
+        }
+        @Override
+        public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+            // TODO Auto-generated method stub
+        }
+    };
 
     private String getReadableDateTime(Date date)
     {
