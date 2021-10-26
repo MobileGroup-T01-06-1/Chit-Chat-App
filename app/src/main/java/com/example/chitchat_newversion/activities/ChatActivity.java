@@ -3,17 +3,21 @@ package com.example.chitchat_newversion.activities;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -35,6 +39,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -97,6 +104,7 @@ public class ChatActivity extends AppCompatActivity {
         message.put(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
         message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+        message.put(Constants.KEY_MESSAGE_IMAGE,false);
         message.put(Constants.KEY_TIMESTAMP, new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
         if(conversionId != null)
@@ -131,7 +139,83 @@ public class ChatActivity extends AppCompatActivity {
                 .addSnapshotListener(eventlistener);
     }
 
+    private void sendImages(String encodedImage)
+    {
+        HashMap<String, Object> message = new HashMap<>();
+        message.put(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID));
+        message.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
+        message.put(Constants.KEY_MESSAGE_IMAGE,true);
+        message.put(Constants.KEY_MESSAGE, encodedImage);
+        message.put(Constants.KEY_TIMESTAMP, new Date());
+        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+        if(conversionId != null)
+        {
+            updateConversion(binding.inputMessage.getText().toString());
+        }
+        else
+        {
+            HashMap<String, Object> conversion = new HashMap<>();
+            conversion.put(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID));
+            conversion.put(Constants.KEY_SENDER_NAME, preferenceManger.getString(Constants.KEY_NAME));
+            conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManger.getString(Constants.KEY_IMAGE));
+            conversion.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
+            conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
+            conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
+            conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
+            conversion.put(Constants.KEY_TIMESTAMP, new Date());
+            addConversion(conversion);
+        }
+        binding.inputMessage.setText(null);
+    }
 
+
+    // read the image from phone
+    // first read image into buffer stream as byte array
+    // then compress the picture as jpeg format
+    // then convert byte array to string format
+    private String encodedImage(Bitmap bitmap)
+    {
+        int width = 150;
+
+        // get height of images
+        int height = bitmap.getHeight() * width / bitmap.getWidth();
+
+        // create a new scales picture according to the original large picture
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, width, height,false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        // https://www.jianshu.com/p/7096fd250c0d
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+
+    private final ActivityResultLauncher<Intent> selectImage = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == RESULT_OK)
+                {
+                    if(result.getData() != null)
+                    {
+                        Uri imageUri = result.getData().getData();
+                        try
+                        {
+                            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                            String encodedImage = encodedImage(bitmap);
+                            sendImages(encodedImage);
+                        }
+                        catch (FileNotFoundException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+            }
+
+    );
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -150,6 +234,7 @@ public class ChatActivity extends AppCompatActivity {
                   chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
                   chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                   chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                  chatMessage.photo = documentChange.getDocument().getBoolean(Constants.KEY_MESSAGE_IMAGE);
                   chatMessages.add(chatMessage);
               }
           }
