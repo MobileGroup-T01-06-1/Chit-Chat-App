@@ -19,6 +19,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
@@ -270,6 +271,11 @@ public class ChatActivity extends AppCompatActivity {
         binding.layoutSend.setOnClickListener(v -> sendMessage());
         //map listener
         binding.sideLocation.setOnClickListener(v -> sendLocation());
+        binding.sideImage.setOnClickListener(v -> {
+
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            selectImage.launch(intent);});
     }
 
     private void sendLocation() {
