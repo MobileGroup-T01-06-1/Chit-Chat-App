@@ -204,8 +204,8 @@ public class ChatActivity extends AppCompatActivity {
             locationManager.requestLocationUpdates(provider, 2000, 10,locationListener);
 
             Location lastknownlocation = locationManager.getLastKnownLocation(provider);
-            String currentposition = "latitude is " + lastknownlocation.getLatitude()  + "longitude is " + lastknownlocation.getLongitude();
             if (lastknownlocation != null) {
+                String currentposition = "latitude is " + lastknownlocation.getLatitude()  + "longitude is " + lastknownlocation.getLongitude();
                 binding.inputMessage.setText(currentposition);
                 Toast.makeText(this, "success", Toast.LENGTH_LONG).show();
             }
