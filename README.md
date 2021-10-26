@@ -16,3 +16,5 @@ This is a software project, from UoM, mobile development
 3. User-list will update when new message has been arrived
 
 2021/10/20 adding a kit of floating buttons with extra functions and voice button on the chat bar
+
+2021/10/26 adding send users' location function
