@@ -31,6 +31,7 @@
         app:layout_constraintWidth_max="wrap"
         android:textColor="@color/white"
         android:textSize="@dimen/_13ssp"
+        android:autoLink="web"
         app:layout_constraintStart_toEndOf="@id/userImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.75"/>

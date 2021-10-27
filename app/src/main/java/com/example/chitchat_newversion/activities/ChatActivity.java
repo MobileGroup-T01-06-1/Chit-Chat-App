@@ -296,7 +296,7 @@ public class ChatActivity extends AppCompatActivity {
 
             Location lastknownlocation = locationManager.getLastKnownLocation(provider);
             if (lastknownlocation != null) {
-                String currentposition = "latitude is " + lastknownlocation.getLatitude()  + "longitude is " + lastknownlocation.getLongitude();
+                String currentposition = "https://www.google.com/maps/place/" + lastknownlocation.getLatitude() + "," + lastknownlocation.getLongitude();
                 binding.inputMessage.setText(currentposition);
                 Toast.makeText(this, "success", Toast.LENGTH_LONG).show();
             }
