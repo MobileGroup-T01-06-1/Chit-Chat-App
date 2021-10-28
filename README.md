@@ -20,10 +20,12 @@
 
 2021/10/19 implement a facility to show recent conversations, including:
 
-1. showing the last recent message in conversations
-2. updating recent conversations real-time
-3. User-list will update when new message has been arrived
+1. showing the last recent message in conversations.
+2. updating recent conversations real-time.
+3. User-list will update when new message has been arrived.
 
-2021/10/20 adding a kit of floating buttons with extra functions and voice button on the chat bar
+2021/10/20 adding a kit of floating buttons with extra functions and voice button on the chat bar.
 
-2021/10/26 adding send users' location function
+2021/10/26 adding send users' location function.
+
+2021/10/28 Bug fixed: click send button to send message, even users did not input any message.

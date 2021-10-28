@@ -79,6 +79,8 @@
         android:layout_marginTop="@dimen/_12sdp"
         app:layout_constraintTop_toBottomOf="@+id/imageBack"/>
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
         android:layout_width="match_parent"
@@ -276,4 +278,18 @@
         app:rippleColor="?android:attr/colorPressedHighlight"
         app:srcCompat="@drawable/ic_more"
         app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/textAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#80858175"
+        android:padding="@dimen/_2sdp"
+        android:text="@string/online"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/viewSupporter"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

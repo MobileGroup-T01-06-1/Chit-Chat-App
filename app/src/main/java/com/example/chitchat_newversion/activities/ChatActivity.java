@@ -5,7 +5,7 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
@@ -24,15 +24,15 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.chitchat_newversion.R;
 import com.example.chitchat_newversion.adapters.ChatAdapter;
 import com.example.chitchat_newversion.databinding.ActivityChatBinding;
 import com.example.chitchat_newversion.models.ChatMessage;
 import com.example.chitchat_newversion.models.Users;
+import com.example.chitchat_newversion.network.APIClient;
+import com.example.chitchat_newversion.network.APIService;
 import com.example.chitchat_newversion.utilities.Constants;
 import com.example.chitchat_newversion.utilities.PreferenceManger;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.common.collect.Collections2;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -40,19 +40,27 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
-public class ChatActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ChatActivity extends BaseActivity {
 
     private ActivityChatBinding binding;
     private Users receiverUser;
@@ -61,6 +69,8 @@ public class ChatActivity extends AppCompatActivity {
     private PreferenceManger preferenceManger;
     private FirebaseFirestore database;
     private String conversionId = null;
+    private Boolean isReceivedAvailable = false;
+
 
     // TODO: 2021/10/20  UI to check whether sub FABs are visible or not & drag
     private Boolean isMainFabVisible, isSubFabVisible, isDrag;
@@ -82,8 +92,16 @@ public class ChatActivity extends AppCompatActivity {
 
     private Bitmap getBitmapFromEncodedString(String encodedImage)
     {
-        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        if(encodedImage != null)
+        {
+            byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
     private void init()
@@ -130,7 +148,112 @@ public class ChatActivity extends AppCompatActivity {
             }
         }
 
+        if(!isReceivedAvailable)
+        {
+            try {
+                JSONArray tokens = new JSONArray();
+                tokens.put(receiverUser.token);
+                JSONObject data = new JSONObject();
+                data.put(Constants.KEY_USER_ID, preferenceManger.getString(Constants.KEY_USER_ID));
+                data.put(Constants.KEY_NAME, preferenceManger.getString(Constants.KEY_NAME));
+                data.put(Constants.KEY_FCM_TOKEN, preferenceManger.getString(Constants.KEY_FCM_TOKEN));
+                data.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
+
+                JSONObject body = new JSONObject();
+                body.put(Constants.REMOTE_MSG_DATA, data);
+                body.put(Constants.REMOTE_MSG_REGISTRATION_IDS, tokens);
+                sendNotification(body.toString());
+            }
+            catch (Exception exception)
+            {
+                showToast(exception.getMessage());
+            }
+        }
         binding.inputMessage.setText(null);
+    }
+
+    private void showToast(String message)
+    {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void sendNotification(String messageBody)
+    {
+        APIClient.getClient().create(APIService.class).sendMessage(
+                Constants.getRemoteMsgHeaders(),
+                messageBody
+        ).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                if(response.isSuccessful())
+                {
+                    try {
+                        if(response.body() != null)
+                        {
+                            JSONObject responseJson = new JSONObject(response.body());
+                            JSONArray results = responseJson.getJSONArray("results:");
+                            if(responseJson.getInt("failure") == 1)
+                            {
+                                JSONObject error = (JSONObject) results.get(0);
+                                showToast(error.getString("error"));
+                                return;
+                            }
+                        }
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    showToast("Notification sent successfully");
+                }
+                else
+                {
+                    showToast("Error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                showToast(t.getMessage());
+
+            }
+        });
+    }
+
+
+    private void listenAvailabilityOfReceiver()
+    {
+        database.collection(Constants.KEY_COLLECTION_USERS).document(
+                receiverUser.id
+        ).addSnapshotListener(ChatActivity.this, (value, error) -> {
+            if(error != null)
+            {
+                return;
+            }
+            if(value != null)
+            {
+                if(value.getLong(Constants.KEY_AVAILABILITY) != null)
+                {
+                    int availability = Objects.requireNonNull(value.getLong(Constants.KEY_AVAILABILITY)).intValue();
+                    isReceivedAvailable = availability == 1;
+                }
+                receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+                if(receiverUser.image == null)
+                {
+                    receiverUser.image = value.getString(Constants.KEY_IMAGE);
+                    chatAdapter.setReceiverProfileImage(getBitmapFromEncodedString(receiverUser.image));
+                    chatAdapter.notifyItemChanged(0, chatMessages.size());
+                }
+            }
+            if(isReceivedAvailable)
+            {
+                binding.textAvailability.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                binding.textAvailability.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void listenMessages()
@@ -390,6 +513,11 @@ public class ChatActivity extends AppCompatActivity {
       }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listenAvailabilityOfReceiver();
+    }
 
     private void sideFab() {
         binding.moreFab.setVisibility(View.GONE);

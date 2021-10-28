@@ -1,14 +1,10 @@
 package com.example.chitchat_newversion.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.chitchat_newversion.R;
 import com.example.chitchat_newversion.adapters.UsersAdapter;
-import com.example.chitchat_newversion.databinding.ActivityLoginBinding;
 import com.example.chitchat_newversion.databinding.ActivityUsersBinding;
 import com.example.chitchat_newversion.listeners.UserListener;
 import com.example.chitchat_newversion.models.Users;
@@ -20,7 +16,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends AppCompatActivity implements UserListener {
+public class UsersActivity extends BaseActivity implements UserListener {
 
     private ActivityUsersBinding binding;
     private PreferenceManger preferenceManger;

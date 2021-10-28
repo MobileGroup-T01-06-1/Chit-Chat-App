@@ -22,5 +22,6 @@
     <string name="return_button">Return</string>
     <string name="new_password">New password</string>
     <string name="side_menu">EXTRA</string>
+    <string name="online">Online</string>
 
 </resources>
