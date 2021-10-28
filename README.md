@@ -29,3 +29,4 @@
 2021/10/26 adding send users' location function.
 
 2021/10/28 Bug fixed: click send button to send message, even users did not input any message.
+2021/10/29 implementing a facility to verify whether a user is online or not; Implementing a push notification facility. The system will send notifications when message-receiver is not online.
