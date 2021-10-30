@@ -10,6 +10,8 @@
     <color name="icon_background">#20FFFFFF</color>
     <color name="error">#B00020</color>
     <color name="gainsboro">#DCDCDC</color>
-    <color name="received_message_background">#090D16</color>
+    <color name="received_message_background">#607B8B</color>
+    <color name="sent_message_background">#6495ED</color>
+
 
 </resources>
