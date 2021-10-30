@@ -427,6 +427,7 @@ public class ChatActivity extends BaseActivity {
             if (lastknownlocation != null) {
                 String currentposition = "https://www.google.com/maps/place/" + lastknownlocation.getLatitude() + "," + lastknownlocation.getLongitude();
                 binding.inputMessage.setText(currentposition);
+                sendMessage();
                 Toast.makeText(this, "success", Toast.LENGTH_LONG).show();
             }
             else{
