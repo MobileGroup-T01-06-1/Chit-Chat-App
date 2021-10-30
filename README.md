@@ -33,3 +33,5 @@
 2021/10/29 implementing a facility to verify whether a user is online or not; Implementing a push notification facility. The system will send notifications when message-receiver is not online.
 
 2021/10/29 design user profile layout.
+
+2021/10/30 adding new sensors of temperature and humidity; Click button updating; UI adjusting.
