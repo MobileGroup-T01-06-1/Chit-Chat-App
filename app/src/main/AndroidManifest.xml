@@ -2,11 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chitchat_newversion">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Always include this permission -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Always include this permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -16,24 +13,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChitChat_newVersion">
+        <activity
+            android:name=".activities.UserProfileActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".activities.ForgotPasswordActivity"
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.ForgotPasswordActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
-
-        <activity android:name=".activities.ResetPasswordActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.ResetPasswordActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
-
-        <activity android:name=".activities.askSafetyQuestionActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activities.askSafetyQuestionActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.ChatActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.UsersActivity"
             android:exported="true" />
@@ -60,7 +64,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

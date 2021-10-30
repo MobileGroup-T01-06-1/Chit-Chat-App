@@ -397,6 +397,7 @@ public class ChatActivity extends BaseActivity {
     {
         binding.imageBack.setOnClickListener(v -> onBackPressed());
         binding.layoutSend.setOnClickListener(v -> sendMessage());
+        binding.imageInfo.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), UserProfileActivity.class)));
         //map listener
         binding.sideLocation.setOnClickListener(v -> sendLocation());
         binding.sideImage.setOnClickListener(v -> {
