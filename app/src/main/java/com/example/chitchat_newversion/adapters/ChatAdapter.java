@@ -100,14 +100,19 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public int getItemViewType(int position) {
         if(chatMessages.get(position).senderId.equals(senderId))
         {
-            if(!chatMessages.get(position).photo) return VIEW_TYPE_SENT;
-            else return VIEW_TYPE_SENT_IMAGE;
+            if(chatMessages.get(position).photo=="0") return VIEW_TYPE_SENT;
+            else if (chatMessages.get(position).photo=="1") {
+                return VIEW_TYPE_SENT_IMAGE;
+            }
         }
         else
         {
-            if(!chatMessages.get(position).photo) return VIEW_TYPE_RECEIVED;
-            else return VIEW_TYPE_RECEIVED_IMAGE;
+            if(chatMessages.get(position).photo=="0") return VIEW_TYPE_RECEIVED;
+            else if (chatMessages.get(position).photo=="1") {
+                return VIEW_TYPE_RECEIVED_IMAGE;
+            }
         }
+        return position;
     }
 
     static class SentMessageViewHolder extends RecyclerView.ViewHolder
