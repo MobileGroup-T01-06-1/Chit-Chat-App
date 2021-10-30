@@ -39,8 +39,8 @@
         android:id="@+id/textName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_42sdp"
+        android:layout_marginEnd="@dimen/_42sdp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
@@ -51,6 +51,29 @@
         app:layout_constraintEnd_toStartOf="@+id/imagelogout"
         app:layout_constraintStart_toEndOf="@+id/userImage"
         app:layout_constraintTop_toTopOf="@+id/userImage"/>
+
+
+    <TextView
+        android:id="@+id/textTemp"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:textSize="@dimen/_9ssp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/userImage"
+        app:layout_constraintTop_toTopOf="@+id/userImage" />
+
+    <TextView
+        android:id="@+id/textHumi"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:textSize="@dimen/_9ssp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/userImage"
+        app:layout_constraintStart_toEndOf="@+id/userImage" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -92,6 +115,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:tint="@color/white"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

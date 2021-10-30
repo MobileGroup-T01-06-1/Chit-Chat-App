@@ -25,5 +25,7 @@
     <string name="online">Online</string>
     <string name="user_profile">User Profile</string>
     <string name="back">Back</string>
+    <string name="temperature">%1$.2f℃</string>
+    <string name="humidity">%1$.1fRH</string>
 
 </resources>

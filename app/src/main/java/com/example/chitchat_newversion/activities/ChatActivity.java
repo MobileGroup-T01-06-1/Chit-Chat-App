@@ -72,9 +72,8 @@ public class ChatActivity extends BaseActivity {
     private Boolean isReceivedAvailable = false;
 
 
-    // TODO: 2021/10/20  UI to check whether sub FABs are visible or not & drag
-    private Boolean isMainFabVisible, isSubFabVisible, isDrag;
-    private int lastX,lastY;
+    private Boolean isMainFabVisible, isSubFabVisible;
+
     //THis variable used in side-location
     private static String provider;
 
@@ -551,6 +550,30 @@ public class ChatActivity extends BaseActivity {
             }else{
                 subFabHide();
             }
+        });
+        binding.sideImage.setOnClickListener(view ->{
+            subFabHide();
+            mainFabHide();
+        });
+        binding.sideLocation.setOnClickListener(view ->{
+            subFabHide();
+            mainFabHide();
+        });
+        binding.sideFile.setOnClickListener(view ->{
+            subFabHide();
+            mainFabHide();
+        });
+        binding.camera.setOnClickListener(view ->{
+            subFabHide();
+            mainFabHide();
+        });
+        binding.phoneCall.setOnClickListener(view ->{
+            subFabHide();
+            mainFabHide();
+        });
+        binding.videoCall.setOnClickListener(view ->{
+            subFabHide();
+            mainFabHide();
         });
     }
     private void mainFabShow(){

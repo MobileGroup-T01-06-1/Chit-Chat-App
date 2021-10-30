@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -51,6 +55,7 @@ public class MainActivity extends BaseActivity implements ConversationListener {
         getToken();
         setListeners();
         listenConversations();
+        sensorInvoke();
     }
 
     private void init()
@@ -188,4 +193,31 @@ public class MainActivity extends BaseActivity implements ConversationListener {
         intent.putExtra(Constants.KEY_USER, users);
         startActivity(intent);
     }
+
+    private void sensorInvoke(){
+        SensorManager mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        mSensorManager.registerListener(mSensorEventListener, mSensor,SensorManager.SENSOR_DELAY_UI);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        mSensorManager.registerListener(mSensorEventListener, mSensor,SensorManager.SENSOR_DELAY_UI);
+    }
+
+    private final SensorEventListener mSensorEventListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            if (sensorEvent.sensor.getType()==Sensor.TYPE_AMBIENT_TEMPERATURE){
+                float temperature = sensorEvent.values[0];
+                binding.textTemp.setText(getString(R.string.temperature,temperature));
+            }
+
+            else if (sensorEvent.sensor.getType()== Sensor.TYPE_RELATIVE_HUMIDITY){
+                float humidity  = sensorEvent.values[0];
+                binding.textHumi.setText(getString(R.string.humidity,humidity));
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+        }
+    };
 }
