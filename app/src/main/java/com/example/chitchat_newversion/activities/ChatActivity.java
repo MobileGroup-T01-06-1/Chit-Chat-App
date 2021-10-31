@@ -124,7 +124,8 @@ public class ChatActivity extends BaseActivity {
             message.put(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID));
             message.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
             message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
-            message.put(Constants.KEY_MESSAGE_IMAGE,"0");
+            //the key that distinguish whether it is image.
+            message.put(Constants.KEY_MESSAGE_IMAGE,false);
             message.put(Constants.KEY_TIMESTAMP, new Date());
 
             database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
@@ -272,7 +273,8 @@ public class ChatActivity extends BaseActivity {
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
-        message.put(Constants.KEY_MESSAGE_IMAGE,"1");
+        //the key that distinguish whether it is image
+        message.put(Constants.KEY_MESSAGE_IMAGE,true);
         message.put(Constants.KEY_MESSAGE, encodedImage);
         message.put(Constants.KEY_TIMESTAMP, new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
@@ -362,7 +364,7 @@ public class ChatActivity extends BaseActivity {
                   chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
                   chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                   chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
-                  chatMessage.photo = documentChange.getDocument().getString(Constants.KEY_MESSAGE_IMAGE);
+                  chatMessage.photo = documentChange.getDocument().getBoolean(Constants.KEY_MESSAGE_IMAGE);
                   chatMessages.add(chatMessage);
               }
           }
@@ -392,6 +394,7 @@ public class ChatActivity extends BaseActivity {
         binding.textName.setText(receiverUser.name);
     }
 
+    //all the onclick actions
     private void setListeners()
     {
         binding.imageBack.setOnClickListener(v -> onBackPressed());
