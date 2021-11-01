@@ -557,10 +557,14 @@ public class ChatActivity extends BaseActivity {
         binding.sideImage.setOnClickListener(view ->{
             subFabHide();
             mainFabHide();
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            selectImage.launch(intent);
         });
         binding.sideLocation.setOnClickListener(view ->{
             subFabHide();
             mainFabHide();
+            sendLocation();
         });
         binding.sideFile.setOnClickListener(view ->{
             subFabHide();
