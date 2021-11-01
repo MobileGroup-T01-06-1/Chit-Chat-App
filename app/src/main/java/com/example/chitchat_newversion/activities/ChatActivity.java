@@ -364,6 +364,7 @@ public class ChatActivity extends BaseActivity {
                   chatMessage.message = documentChange.getDocument().getString(Constants.KEY_MESSAGE);
                   chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                   chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
+                  //MESSAGE_IMAGE value
                   chatMessage.photo = documentChange.getDocument().getBoolean(Constants.KEY_MESSAGE_IMAGE);
                   chatMessages.add(chatMessage);
               }
