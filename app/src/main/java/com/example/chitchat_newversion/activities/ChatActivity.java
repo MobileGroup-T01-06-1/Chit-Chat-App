@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -580,6 +581,11 @@ public class ChatActivity extends BaseActivity {
             mainFabHide();
         });
         binding.videoCall.setOnClickListener(view ->{
+            //Call the agora Application
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            ComponentName componentName = new ComponentName("io.agora.openvcall","io.agora.openvcall.ui.MainActivity");
+            intent.setComponent(componentName);
+            startActivity(intent);
             subFabHide();
             mainFabHide();
         });
