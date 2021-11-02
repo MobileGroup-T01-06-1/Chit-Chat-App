@@ -42,7 +42,7 @@
         android:layout_marginTop="@dimen/_4sdp"
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/_8ssp"
-        app:layout_constraintStart_toStartOf="@id/textMessage"
-        app:layout_constraintTop_toBottomOf="@id/textMessage"/>
+        app:layout_constraintStart_toStartOf="@id/textImage"
+        app:layout_constraintTop_toBottomOf="@id/textImage"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
