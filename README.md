@@ -1,6 +1,8 @@
  # Chit-Chat-App
  This is a software project, from UoM, mobile development, which is basically implemented a chat application.
  ## Features
+ Video Call: Using the agora API to build this function which could have mutiple people to use this room or two people chat alone.
+ Send Location: User could send his/her location to others, and others could open it in google map.
  
 ## Pre-requisites
 
