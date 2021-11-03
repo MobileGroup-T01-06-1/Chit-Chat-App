@@ -24,10 +24,17 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Bitmap receiverProfileImage;
     private final String senderId;
 
-    public static final int VIEW_TYPE_SENT = 1;
-    public static final int VIEW_TYPE_RECEIVED = 2;
-    public static final int VIEW_TYPE_SENT_IMAGE = 3;
-    public static final int VIEW_TYPE_RECEIVED_IMAGE = 4;
+    private class VIEW_TYPE{
+        public static final int SENT_MESSAGE = 1;
+        public static final int SENT_IMAGE = 2;
+        public static final int SENT_AUDIO = 3;
+        public static final int SENT_LOCATION = 4;
+        public static final int RECEIVED_MESSAGE = 5;
+        public static final int RECEIVED_IMAGE = 6;
+        public static final int RECEIVED_AUDIO = 7;
+        public static final int RECEIVED_LOCATION = 8;
+    };
+
 
     public void setReceiverProfileImage(Bitmap bitmap)
     {
@@ -44,25 +51,25 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
-            case VIEW_TYPE_SENT:
+            case VIEW_TYPE.SENT_MESSAGE:
                 return new SentMessageViewHolder(
                         ItemContainerSentMessageBinding.inflate(LayoutInflater.from(parent.getContext()),
                                 parent, false)
                 );
-            case VIEW_TYPE_RECEIVED:
+            case VIEW_TYPE.RECEIVED_MESSAGE:
                 return new ReceivedMessageViewHolder(
                         ItemContainerReceivedMessageBinding.inflate(
                                 LayoutInflater.from(parent.getContext()),
                                 parent, false
                         )
                 );
-            case VIEW_TYPE_SENT_IMAGE:
+            case VIEW_TYPE.SENT_IMAGE:
                 return new SentImageViewHolder(
                         ItemContainerSentImageBinding.inflate(LayoutInflater.from(parent.getContext()),
                                 parent, false
                         )
                 );
-            case VIEW_TYPE_RECEIVED_IMAGE:
+            case VIEW_TYPE.RECEIVED_IMAGE:
                 return new ReceivedImageViewHolder(
                         ItemContainerReceivedImageBinding.inflate(
                                 LayoutInflater.from(parent.getContext()),
@@ -76,16 +83,16 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         switch(getItemViewType(position))
-            {case VIEW_TYPE_SENT:
-                ((SentMessageViewHolder) holder).setData(chatMessages.get(position));
-                break;
-            case VIEW_TYPE_RECEIVED:
+        {   case VIEW_TYPE.SENT_MESSAGE:
+            ((SentMessageViewHolder) holder).setData(chatMessages.get(position));
+            break;
+            case VIEW_TYPE.RECEIVED_MESSAGE:
                 ((ReceivedMessageViewHolder) holder).setData(chatMessages.get(position), receiverProfileImage);
                 break;
-            case VIEW_TYPE_SENT_IMAGE:
+            case VIEW_TYPE.SENT_IMAGE:
                 ((SentImageViewHolder) holder).setData(chatMessages.get(position));
                 break;
-            case VIEW_TYPE_RECEIVED_IMAGE:
+            case VIEW_TYPE.RECEIVED_IMAGE:
                 ((ReceivedImageViewHolder) holder).setData(chatMessages.get(position), receiverProfileImage);
                 break;
         }
@@ -98,16 +105,30 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if(chatMessages.get(position).senderId.equals(senderId))
-        {
-            if(!chatMessages.get(position).photo) return VIEW_TYPE_SENT;
-            else return VIEW_TYPE_SENT_IMAGE;
+        if (chatMessages.get(position).senderId.equals(senderId)) {
+            switch (chatMessages.get(position).message_type) {
+                case 1:
+                    return VIEW_TYPE.SENT_MESSAGE;
+                case 2:
+                    return VIEW_TYPE.SENT_IMAGE;
+                case 3:
+                    return VIEW_TYPE.SENT_AUDIO;
+                case 4:
+                    return VIEW_TYPE.SENT_LOCATION;
+            }
+        } else {
+            switch (chatMessages.get(position).message_type) {
+                case 1:
+                    return VIEW_TYPE.RECEIVED_MESSAGE;
+                case 2:
+                    return VIEW_TYPE.RECEIVED_IMAGE;
+                case 3:
+                    return VIEW_TYPE.RECEIVED_AUDIO;
+                case 4:
+                    return VIEW_TYPE.RECEIVED_LOCATION;
+            }
         }
-        else
-        {
-            if(!chatMessages.get(position).photo) return VIEW_TYPE_RECEIVED;
-            else return VIEW_TYPE_RECEIVED_IMAGE;
-        }
+        return 0;
     }
 
     static class SentMessageViewHolder extends RecyclerView.ViewHolder

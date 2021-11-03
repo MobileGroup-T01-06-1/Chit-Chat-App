@@ -1,17 +1,22 @@
 package com.example.chitchat_newversion.activities;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import com.example.chitchat_newversion.R;
 import com.example.chitchat_newversion.adapters.RecentConversationsAadpter;
@@ -42,8 +47,10 @@ public class MainActivity extends BaseActivity implements ConversationListener {
     private List<ChatMessage> conversations;
     private RecentConversationsAadpter conversationsAadpter;
     private FirebaseFirestore database;
-
-
+    private static String[] PERMISSIONS_LOCATION = {
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION};
+    private static int REQUEST_PERMISSION_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,13 @@ public class MainActivity extends BaseActivity implements ConversationListener {
         setListeners();
         listenConversations();
         sensorInvoke();
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_PERMISSION_CODE);
+            }
+        }
+
     }
 
     private void init()

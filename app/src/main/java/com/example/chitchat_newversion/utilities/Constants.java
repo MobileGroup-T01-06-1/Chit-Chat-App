@@ -30,7 +30,7 @@ public class Constants {
         public static final String KEY_RECEIVED_ID = "receivedId";
         public static final String KEY_MESSAGE = "message";
         public static final String KEY_TIMESTAMP = "timestamp";
-        public static final String KEY_MESSAGE_IMAGE = "message_image";
+        public static final String KEY_MESSAGE_TYPE = "message_type";
 
         public static final String KEY_COLLECTION_CONVERSATION = "conversations";
         public static final String KEY_SENDER_NAME = "senderName";

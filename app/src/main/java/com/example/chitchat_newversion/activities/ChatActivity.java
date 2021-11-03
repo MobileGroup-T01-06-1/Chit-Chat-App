@@ -126,7 +126,7 @@ public class ChatActivity extends BaseActivity {
             message.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
             message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString());
             //the key that distinguish whether it is image.
-            message.put(Constants.KEY_MESSAGE_IMAGE,false);
+            message.put(Constants.KEY_MESSAGE_TYPE,"1");
             message.put(Constants.KEY_TIMESTAMP, new Date());
 
             database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
@@ -275,7 +275,7 @@ public class ChatActivity extends BaseActivity {
         message.put(Constants.KEY_SENDER_ID, preferenceManger.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
         //the key that distinguish whether it is image
-        message.put(Constants.KEY_MESSAGE_IMAGE,true);
+        message.put(Constants.KEY_MESSAGE_TYPE,"2");
         message.put(Constants.KEY_MESSAGE, encodedImage);
         message.put(Constants.KEY_TIMESTAMP, new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
@@ -366,7 +366,7 @@ public class ChatActivity extends BaseActivity {
                   chatMessage.dateTime = getReadableDateTime(documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP));
                   chatMessage.dateObject = documentChange.getDocument().getDate(Constants.KEY_TIMESTAMP);
                   //MESSAGE_IMAGE value
-                  chatMessage.photo = documentChange.getDocument().getBoolean(Constants.KEY_MESSAGE_IMAGE);
+                  chatMessage.message_type = Integer.parseInt(documentChange.getDocument().getString(Constants.KEY_MESSAGE_TYPE));
                   chatMessages.add(chatMessage);
               }
           }
