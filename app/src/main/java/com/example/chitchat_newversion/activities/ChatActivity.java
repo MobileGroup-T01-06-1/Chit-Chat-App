@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -63,6 +64,7 @@ import retrofit2.Response;
 
 public class ChatActivity extends BaseActivity {
 
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private ActivityChatBinding binding;
     private Users receiverUser;
     private List<ChatMessage> chatMessages;
@@ -292,7 +294,7 @@ public class ChatActivity extends BaseActivity {
             conversion.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
             conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.name);
             conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
-            conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
+            conversion.put(Constants.KEY_LAST_MESSAGE, "[Image]");
             conversion.put(Constants.KEY_TIMESTAMP, new Date());
             addConversion(conversion);
         }
@@ -347,6 +349,13 @@ public class ChatActivity extends BaseActivity {
             }
 
     );
+
+
+    private final ActivityResultLauncher<Void> takephoto = registerForActivityResult(
+            new ActivityResultContracts.TakePicturePreview(), result -> {
+                sendImages(encodedImage(result));
+            });
+
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -404,11 +413,15 @@ public class ChatActivity extends BaseActivity {
         binding.imageInfo.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), UserProfileActivity.class)));
         //map listener
         binding.sideLocation.setOnClickListener(v -> sendLocation());
+        binding.camera.setOnClickListener(v -> {
+            takephoto.launch(null);
+        });
         binding.sideImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             selectImage.launch(intent);});
     }
+
 
     private void sendLocation() {
         String serviceString = Context.LOCATION_SERVICE;
@@ -575,6 +588,7 @@ public class ChatActivity extends BaseActivity {
         binding.camera.setOnClickListener(view ->{
             subFabHide();
             mainFabHide();
+            takephoto.launch(null);
         });
         binding.phoneCall.setOnClickListener(view ->{
             subFabHide();
