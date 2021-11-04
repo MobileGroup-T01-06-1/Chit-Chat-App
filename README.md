@@ -15,9 +15,11 @@
 ## Pre-requisites
 To run this project, [sdk](https://developer.android.com/studio) and [jdk](https://www.oracle.com/java/technologies/downloads/) will be needed.
 
-![jdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG =100x100)
+<div  align="center">    
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG" width = "300" height = "200" alt="jdk version" align=center />
+</div>
 
-![sdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sdk.PNG =100x100)
+![sdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sdk.PNG)
 
 **Notice: We highly recommend sdk 30 as compile sdk version**
 
