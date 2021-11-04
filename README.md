@@ -30,13 +30,13 @@ If you want to build this project on your own firebase project, you should compl
 1.enter into [firebase](https://firebase.google.com/)
 2.click get started, and do what it told you to do
 3.if you want to generate signature ceritifcate SHA-1, this picture will help you to understand <div  align="center">    
- <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sha1.jpg" width = "500"  alt="SHA1" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sha1.jpg" width = "350"  alt="SHA1" align=center />
 </div>
 4.when enter in firestore database, rules have to be modified. <div  align="center">    
- <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/rule.PNG" width = "500"  alt="rules" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/rule.PNG" width = "350"  alt="rules" align=center />
 </div>
 5.Due to notification sending, so the corresponding part should be modified. Move to project setting -> Cloud Messaging, then copy token; And then open the project, click Constants.java, to change key. <div  align="center">    
- <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/cloud%20settings.jpg" width = "500"  alt="cloud messaging" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/cloud%20settings.jpg" width = "700"  alt="cloud messaging" align=center />
 </div>
 
 
