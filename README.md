@@ -13,6 +13,8 @@
 - Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
 - Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
 ## Pre-requisites
+To run this project, sdk and jdk will be needed.
+
 
 ## Preparation
 Prepare the Java running environment, then download Android studio and install the SDK. Use the GIT tool to download the team project locally. The Google services JSON file in the project. This project is to design a chat software, so we choose to use the firebase framework to add it to the Android project. The specific steps are as follows: 
