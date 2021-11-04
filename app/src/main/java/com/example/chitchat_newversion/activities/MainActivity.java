@@ -2,6 +2,7 @@ package com.example.chitchat_newversion.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -90,6 +91,12 @@ public class MainActivity extends BaseActivity implements ConversationListener {
     {
         binding.imagelogout.setOnClickListener(v -> logout());
         binding.fabNewChat.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+        binding.videoCall.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            ComponentName componentName = new ComponentName("io.agora.openvcall","io.agora.openvcall.ui.MainActivity");
+            intent.setComponent(componentName);
+            startActivity(intent);
+        });
     }
 
 

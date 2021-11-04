@@ -116,4 +116,14 @@
         app:layout_constraintEnd_toEndOf = "parent"
         app:tint="@color/white"/>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/videoCall"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="Button"
+        app:srcCompat="@drawable/ic_video_call"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textName"
+        app:layout_constraintStart_toEndOf="@+id/textName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
