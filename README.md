@@ -1,11 +1,13 @@
- # Chit-Chat-App
- This is a software project, from UoM, mobile development, which is basically implemented a chat application.
- ## Features
- Video Call(sensor used: Audio, Camera): Using the agora API to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.
+# Chit-Chat-App
+ This is a software project, from UoM, mobile development, which is basically implemented a chat application, allowing communication between users.
+## Features
+
+
+Video Call(sensor used: Audio, Camera): Using the agora API to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.
  
- Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
+Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
  
- Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
+Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
 ## Pre-requisites
 
 ## Preparation
