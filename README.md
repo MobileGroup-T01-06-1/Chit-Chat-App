@@ -13,11 +13,13 @@
 - Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
 - Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
 ## Pre-requisites
-To run this project, sdk and jdk will be needed.
+To run this project, sdk and [jdk]: https://www.oracle.com/java/technologies/downloads/ will be needed.
 
 ![jdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG)
 
 ![sdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sdk.PNG)
+
+**Notice: We highly recommend sdk 30 as compile sdk version**
 
 
 ## Preparation
