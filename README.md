@@ -13,7 +13,7 @@
 - Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
 - Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
 ## Pre-requisites
-To run this project, sdk and [jdk]: https://www.oracle.com/java/technologies/downloads/ will be needed.
+To run this project, [sdk](https://developer.android.com/studio) and [jdk](https://www.oracle.com/java/technologies/downloads/) will be needed.
 
 ![jdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG)
 
@@ -23,8 +23,12 @@ To run this project, sdk and [jdk]: https://www.oracle.com/java/technologies/dow
 
 
 ## Preparation
-Prepare the Java running environment, then download Android studio and install the SDK. Use the GIT tool to download the team project locally. The Google services JSON file in the project. This project is to design a chat software, so we choose to use the firebase framework to add it to the Android project. The specific steps are as follows: 
-
+There are several steps you need to complete, to running this project.
+``` crmsh git clone https://github.com/MobileGroup-T01-06-1/Chit-Chat-App ```
+If you want to build this project on your own firebase project, you should complete several steps as follow:
+- enter into [firebase](https://firebase.google.com/)
+- click get started, and do what it told you to do
+- 
 First, add the name of the Android package to the Firebase web page, and then debug the signature certificate. Open CMD, enter [keytool - List - V - keystore + file path of debug.keystore], enter the keystore type and keystore provider, and you can get the signing certificate. The next step is to modify the gradle file, which is divided into app level and project level. It mainly involves modifying the SDK version, java version, and some dependent versions.
 
 Then you need to create a database, select the production mode, and then select the time zone (nam8). What you need to do in this part is to modify the rules of the database. This can better protect our database.
