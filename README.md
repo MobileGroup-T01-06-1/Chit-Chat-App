@@ -2,9 +2,9 @@
  This is a software project, from UoM, mobile development, which is basically implemented a chat application, allowing communication between users.
 ## Features
 - Authentication
- - Login & Loginout: allowing users to successfully enter and withdraw the app, depending on the token modification.
- - Registration: allowing users to input their basic information, like email, password, etc. Additional, safety question has been added to help users find their password.
- - Forget Password: reset password depending on the safety question & answer, which is set in the registration step previously. 
+  - Login & Loginout: allowing users to successfully enter and withdraw the app, depending on the token modification.
+  - Registration: allowing users to input their basic information, like email, password, etc. Additional, safety question has been added to help users find their password.
+  - Forget Password: reset password depending on the safety question & answer, which is set in the registration step previously. 
 
 - Video Call(sensor used: Audio, Camera): Using the agora API to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.
  
