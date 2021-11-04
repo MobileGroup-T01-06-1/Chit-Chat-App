@@ -27,8 +27,11 @@ To run this project, [sdk](https://developer.android.com/studio) and [jdk](https
 There are several steps you need to complete, to running this project.
 ``` git clone https://github.com/MobileGroup-T01-06-1/Chit-Chat-App ```
 If you want to build this project on your own firebase project, you should complete several steps as follow:
+
 1.enter into [firebase](https://firebase.google.com/)
+
 2.click get started, and do what it told you to do
+
 3.if you want to generate signature ceritifcate SHA-1, this picture will help you to understand <div  align="center">    
  <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sha1.jpg" width = "350"  alt="SHA1" align=center />
 </div>
