@@ -5,11 +5,12 @@
   - Login & Loginout: allowing users to successfully enter and withdraw the app, depending on the token modification.
   - Registration: allowing users to input their basic information, like email, password, etc. Additional, safety question has been added to help users find their password.
   - Forget Password: reset password depending on the safety question & answer, which is set in the registration step previously. 
-
-- Video Call(sensor used: Audio, Camera): Using the agora API to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.
- 
+- Sending text message: allowing real-time communication between users, based on firebase.
+- Sending images
+- Notification: implementing a facility to verify whether a user is online or not; Implementing a push notification facility. The system will send notifications when message-receiver is not online.
+- Updating recent conversation: once the conversation has been done, people who users just chat will appear on the main page, and showing the content.
+- Video Call(sensor used: Audio, Camera): Using the **agora API** to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.
 - Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
- 
 - Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
 ## Pre-requisites
 
