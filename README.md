@@ -26,7 +26,7 @@ To run this project, [sdk](https://developer.android.com/studio) and [jdk](https
 ## Preparation
 There are several steps you need to complete, to running this project.
 ``` git clone https://github.com/MobileGroup-T01-06-1/Chit-Chat-App ```
-If you want to build this project on your own firebase project, you should complete several steps as follow:
+***If you want to build this project on your own firebase project, you should complete several steps as follow***:
 
 1.enter into [firebase](https://firebase.google.com/)
 
