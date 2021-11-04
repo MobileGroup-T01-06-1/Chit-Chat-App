@@ -5,6 +5,7 @@
  
  Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
  
+ Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
 ## Pre-requisites
 
 ## Preparation
