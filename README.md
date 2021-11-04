@@ -15,6 +15,10 @@
 ## Pre-requisites
 To run this project, sdk and jdk will be needed.
 
+![jdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG)
+
+![sdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sdk.PNG)
+
 
 ## Preparation
 Prepare the Java running environment, then download Android studio and install the SDK. Use the GIT tool to download the team project locally. The Google services JSON file in the project. This project is to design a chat software, so we choose to use the firebase framework to add it to the Android project. The specific steps are as follows: 
