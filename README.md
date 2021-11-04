@@ -1,5 +1,5 @@
 # Chit-Chat-App
- This is a software project, from UoM, mobile development, which is basically implemented a chat application, allowing communication between users.
+ This is a software project, from UoM, mobile development, which is basically implemented a chat application, based on firebase.
 ## Features
 - Authentication
   - Login & Loginout: allowing users to successfully enter and withdraw the app, depending on the token modification.
@@ -16,8 +16,8 @@
 To run this project, [sdk](https://developer.android.com/studio) and [jdk](https://www.oracle.com/java/technologies/downloads/) will be needed.
 
 <div  align="center">    
- <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG" width = "300"  alt="jdk version" align=center />
- <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sdk.PNG" width = "300"  alt="sdk version" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG" width = "500"  alt="jdk version" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sdk.PNG" width = "500"  alt="sdk version" align=center />
 </div>
 
 **Notice: We highly recommend sdk 30 as compile sdk version**
@@ -42,7 +42,7 @@ If you want to build this project on your own firebase project, you should compl
  <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/cloud%20settings.jpg" width = "700"  alt="cloud messaging" align=center />
 </div>
 
-
+## Running Effect
 
 ## Working Processing(After building prototype 1)
 2021/10/11 Building prototype of chit-chat app, adding real time text-communication function.
