@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/primary"
+    android:background="@drawable/background_head"
     tools:context=".activities.MainActivity">
 
     <com.makeramen.roundedimageview.RoundedImageView
@@ -111,7 +111,7 @@
         android:layout_marginBottom="@dimen/_24sdp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_add"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="#355C7D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:tint="@color/white"/>

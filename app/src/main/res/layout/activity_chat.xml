@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/primary"
+    android:background="@drawable/background_head"
     tools:context=".activities.ChatActivity">
-
 
 
     <View
@@ -17,13 +16,15 @@
         android:layout_marginBottom="@dimen/_16sdp"
         android:background="@drawable/background_content_top"
         app:layout_constraintBottom_toTopOf="@id/layoutSend"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <View
         android:id="@+id/headerBackground"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/primary"
+        android:background="@drawable/background_head"
         app:layout_constraintBottom_toTopOf="@+id/viewSupporter"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -176,26 +177,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginBottom="@dimen/_40sdp"
-        android:backgroundTint="@color/primary_dark"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#355C7D"
         android:text="@string/side_menu"
         android:textColor="@color/white"
         app:icon="@drawable/ic_menu"
         app:iconTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBckground"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerBackground" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/side_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="#4E84B3"
         android:contentDescription="@string/app_name"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/side_menu"
         app:layout_constraintEnd_toEndOf="@+id/side_menu"
+        app:layout_constraintTop_toBottomOf="@+id/side_menu"
         app:rippleColor="#e7d16b"
         app:srcCompat="@drawable/ic_image"
         app:tint="@color/white" />
@@ -204,12 +206,11 @@
         android:id="@+id/side_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@android:color/holo_red_light"
+        android:backgroundTint="#021C6C"
         android:contentDescription="@string/app_name"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/side_file"
-        app:layout_constraintEnd_toEndOf="@+id/side_file"
+        app:layout_constraintEnd_toEndOf="@+id/side_image"
+        app:layout_constraintTop_toBottomOf="@+id/side_file"
         app:srcCompat="@drawable/ic_location"
         app:tint="@color/white" />
 
@@ -217,13 +218,14 @@
         android:id="@+id/video_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@android:color/holo_purple"
+        android:layout_marginTop="2dp"
+        android:backgroundTint="#9E88B1"
         android:contentDescription="@string/app_name"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/more_fab"
         app:layout_constraintEnd_toEndOf="@+id/more_fab"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/more_fab"
+        app:layout_constraintTop_toBottomOf="@+id/more_fab"
         app:srcCompat="@drawable/ic_video_call"
         app:tint="@color/white" />
 
@@ -231,11 +233,12 @@
         android:id="@+id/phone_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/holo_blue_bright"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#E498AE"
         android:contentDescription="@string/app_name"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/camera"
         app:layout_constraintEnd_toStartOf="@+id/video_call"
+        app:layout_constraintTop_toBottomOf="@+id/camera"
         app:srcCompat="@drawable/ic_phone_call"
         app:tint="@color/white" />
 
@@ -243,13 +246,14 @@
         android:id="@+id/camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@android:color/holo_green_light"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="#C06C84"
         android:contentDescription="@string/app_name"
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="@+id/more_fab"
         app:layout_constraintEnd_toStartOf="@+id/more_fab"
         app:layout_constraintTop_toTopOf="@+id/more_fab"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_camera"
         app:tint="@color/white" />
 
@@ -257,27 +261,25 @@
         android:id="@+id/side_file"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/design_default_color_error"
+        android:backgroundTint="#2B3988"
         android:contentDescription="@string/app_name"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/side_image"
         app:layout_constraintEnd_toEndOf="@+id/side_image"
+        app:layout_constraintTop_toBottomOf="@+id/side_image"
         app:srcCompat="@drawable/ic_file"
         app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/more_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:layout_width="62dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="12dp"
+        android:backgroundTint="#6C5B7B"
         android:contentDescription="@string/app_name"
         app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/side_menu"
         app:layout_constraintStart_toStartOf="@+id/side_menu"
-        app:rippleColor="?android:attr/colorPressedHighlight"
+        app:layout_constraintTop_toBottomOf="@+id/side_menu"
+        app:rippleColor="#00120A"
         app:srcCompat="@drawable/ic_more"
         app:tint="@color/white" />
 
