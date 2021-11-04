@@ -16,7 +16,7 @@
 To run this project, [sdk](https://developer.android.com/studio) and [jdk](https://www.oracle.com/java/technologies/downloads/) will be needed.
 
 <div  align="center">    
- <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG" width = "200"  alt="jdk version" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/jdk.PNG" width = "300"  alt="jdk version" align=center />
 </div>
 
 ![sdk version](https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/sdk.PNG)
