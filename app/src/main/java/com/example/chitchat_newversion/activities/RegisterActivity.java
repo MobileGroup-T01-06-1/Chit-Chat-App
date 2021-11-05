@@ -26,6 +26,7 @@ import com.example.chitchat_newversion.databinding.ActivityLoginBinding;
 import com.example.chitchat_newversion.databinding.ActivityRegisterBinding;
 import com.example.chitchat_newversion.utilities.Constants;
 import com.example.chitchat_newversion.utilities.PreferenceManger;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -228,12 +229,31 @@ public class RegisterActivity extends AppCompatActivity {
             showToast("Please input the answer of safety question");
             return false;
         }
+        else if(Email_Already_Exists(binding.inputEmail.getText().toString()))
+        {
+            showToast("Email already exist");
+            return false;
+        }
         else
         {
             return true;
         }
     }
-
+    private Boolean exist_flag;
+    private  Boolean Email_Already_Exists(String email){
+        exist_flag = false;
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .whereEqualTo(Constants.KEY_EMAIL, email)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0)
+                        exist_flag = true;
+                    else
+                        showToast("Failed to connect to database");
+    });
+        return exist_flag;
+    }
     // verify the format of username
     // the total number of characters is limited to 6-10, it must start with a letter
     // and allow letters, digits and underscores

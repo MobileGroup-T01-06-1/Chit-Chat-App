@@ -42,30 +42,26 @@
 
         </FrameLayout>
 
-        <EditText
+        <TextView
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
-            android:imeOptions="actionNext"
             android:importantForAutofill="no"
-            android:inputType="text"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp"
             tools:ignore="LabelFor" />
 
-        <EditText
+        <TextView
             android:id="@+id/userEmail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
-            android:imeOptions="actionNext"
             android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
             android:paddingStart="@dimen/_16sdp"
             android:paddingEnd="@dimen/_16sdp"
             android:textColor="@color/primary_text"
