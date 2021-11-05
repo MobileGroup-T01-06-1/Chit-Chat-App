@@ -9,7 +9,7 @@
 - Sending images
 - Notification: implementing a facility to verify whether a user is online or not; Implementing a push notification facility. The system will send notifications when message-receiver is not online.
 - Updating recent conversation: once the conversation has been done, people who users just chat will appear on the main page, and showing the content.
-- Video Call(sensor used: Audio, Camera): Using the **agora API** to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.
+- Video Call(sensor used: Audio, Camera): Using the **agora API** to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.(Project link: https://github.com/MobileGroup-T01-06-1/OpenVideoCall-Android)
 - Send Location(Sensor used: Location): User could send his/her location to others, and others could open it in google map.
 - Weather Live(Sensor used: Ambient Temperature, Relative Humidity): User could view the live temperature and humidity in the main interface.
 ## Pre-requisites
