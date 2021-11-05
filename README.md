@@ -6,7 +6,8 @@
   - Registration: allowing users to input their basic information, like email, password, etc. Additional, safety question has been added to help users find their password.
   - Forget Password: reset password depending on the safety question & answer, which is set in the registration step previously. 
 - Sending text message: allowing real-time communication between users, based on firebase.
-- Sending images
+- Sending images: allowing users to transfer images to each other in Bitmap form.
+- Taking photos: allowing users to take a photo from the camera and transfer the photo to the receiver in Bitmap form.
 - Notification: implementing a facility to verify whether a user is online or not; Implementing a push notification facility. The system will send notifications when message-receiver is not online.
 - Updating recent conversation: once the conversation has been done, people who users just chat will appear on the main page, and showing the content.
 - Video Call(sensor used: Audio, Camera): Using the **agora API** to build this function which could have mutiple people to use this room or two people chat alone. # Notes: install this application first, then, chit-chat app.(Project link: https://github.com/MobileGroup-T01-06-1/OpenVideoCall-Android)
