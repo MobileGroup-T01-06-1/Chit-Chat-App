@@ -49,6 +49,7 @@ There are several steps you need to complete, to running this project.
  <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/login%20page.PNG" width = "350"  alt="rules" align=center />
  <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/main%20page.PNG" width = "350"  alt="rules" align=center />
 </div>
+</br>
 
 <div  align="center">    
  <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/chat%20message.PNG" width = "350"  alt="rules" align=center />
