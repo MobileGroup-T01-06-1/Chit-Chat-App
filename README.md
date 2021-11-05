@@ -45,6 +45,15 @@ There are several steps you need to complete, to running this project.
 </div>
 
 ## Running Effect
+<div  align="center">    
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/login%20page.PNG" width = "350"  alt="rules" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/main%20page.PNG" width = "350"  alt="rules" align=center />
+</div>
+
+<div  align="center">    
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/chat%20message.PNG" width = "350"  alt="rules" align=center />
+ <img src="https://github.com/MobileGroup-T01-06-1/Chit-Chat-App/blob/master/document%20images/video%20call.PNG" width = "350"  alt="rules" align=center />
+</div>
 
 ## Working Processing(After building prototype 1)
 2021/10/11 Building prototype of chit-chat app, adding real time text-communication function.
