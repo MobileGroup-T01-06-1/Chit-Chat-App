@@ -1,6 +1,8 @@
 # Chit-Chat-App
  This is a software project, from UoM, mobile development, which is basically implemented a chat application, based on firebase.
- Demo Video:https://youtu.be/eoiH_jCAEbQ
+ 
+ Demo Video: https://youtu.be/eoiH_jCAEbQ
+ 
 ## Features
 - Authentication
   - Login & Loginout: allowing users to successfully enter and withdraw the app, depending on the token modification.
